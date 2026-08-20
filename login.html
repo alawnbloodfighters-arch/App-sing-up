@@ -332,8 +332,14 @@
                 );
 
 
-                alert(
-                    "✅ Login সফল হয়েছে!"
+                alert("✅ Login সফল হয়েছে!");
+
+const uid = user.uid;
+
+window.location.href =
+    "aabf://login-success?uid=" +
+    encodeURIComponent(uid);
+             
                 );
 
 
