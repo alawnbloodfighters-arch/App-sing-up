@@ -1,1 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    min-height: 100vh;
+    font-family: Arial, "Noto Sans Bengali", sans-serif;
+    background: linear-gradient(145deg, #fff5f5, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 390px;
+    text-align: center;
+}
+
+/* Logo */
+
+.logo-box {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #d90429;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(217, 4, 41, 0.22);
+}
+
+.blood-drop {
+    color: white;
+    font-size: 38px;
+}
+
+/* Heading */
+
+h1 {
+    font-size: 28px;
+    color: #b00020;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+/* Inputs */
+
+.input-box {
+    height: 56px;
+    width: 100%;
+    background: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 15px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+}
+
+.input-box span {
+    font-size: 19px;
+    margin-right: 12px;
+}
+
+.input-box input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: transparent;
+    color: #222;
+}
+
+.input-box input::placeholder {
+    color: #999;
+}
+
+.eye {
+    border: none;
+    background: transparent;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+/* Button */
+
+.signup-btn {
+    width: 100%;
+    height: 56px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 15px;
+    background: #d90429;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(217, 4, 41, 0.25);
+}
+
+.signup-btn:active {
+    transform: scale(0.98);
+}
+
+/* Login */
+
+.login-text {
+    margin-top: 22px;
+    font-size: 14px;
+    color: #777;
+}
+
+.login-text span {
+    color: #d90429;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Small screen */
+
+@media (max-width: 360px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .logo-box {
+        width: 72px;
+        height: 72px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+}
