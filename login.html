@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>AABF Feni - Login</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -45,7 +47,8 @@
             align-items: center;
             justify-content: center;
 
-            box-shadow: 0 10px 25px rgba(217, 4, 41, 0.22);
+            box-shadow:
+                0 10px 25px rgba(217, 4, 41, 0.22);
         }
 
         .blood-drop {
@@ -56,14 +59,12 @@
         h1 {
             font-size: 28px;
             color: #b00020;
-
             margin-bottom: 5px;
         }
 
         .subtitle {
             color: #777;
             font-size: 15px;
-
             margin-bottom: 28px;
         }
 
@@ -84,7 +85,8 @@
 
             padding: 0 16px;
 
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.04);
         }
 
         .input-box span {
@@ -137,7 +139,8 @@
 
             cursor: pointer;
 
-            box-shadow: 0 8px 20px rgba(217, 4, 41, 0.25);
+            box-shadow:
+                0 8px 20px rgba(217, 4, 41, 0.25);
         }
 
         .login-btn:disabled {
@@ -175,7 +178,9 @@
                 font-size: 25px;
             }
         }
+
     </style>
+
 </head>
 
 
@@ -183,41 +188,60 @@
 
     <div class="login-container">
 
+        <!-- LOGO -->
+
         <div class="logo-box">
-            <div class="blood-drop">♥</div>
+
+            <div class="blood-drop">
+                ♥
+            </div>
+
         </div>
 
-        <h1>AABF Feni</h1>
+
+        <!-- TITLE -->
+
+        <h1>
+            AABF Feni
+        </h1>
 
         <p class="subtitle">
             Login to your account
         </p>
 
 
+        <!-- LOGIN FORM -->
+
         <form id="loginForm">
 
-            <!-- Mobile Number -->
+
+            <!-- PHONE -->
 
             <div class="input-box">
 
-                <span>📱</span>
+                <span>
+                    📱
+                </span>
 
                 <input
                     type="tel"
                     id="phone"
                     placeholder="মোবাইল নম্বর"
                     maxlength="11"
+                    inputmode="numeric"
                     required
                 >
 
             </div>
 
 
-            <!-- Password -->
+            <!-- PASSWORD -->
 
             <div class="input-box">
 
-                <span>🔒</span>
+                <span>
+                    🔒
+                </span>
 
                 <input
                     type="password"
@@ -237,7 +261,7 @@
             </div>
 
 
-            <!-- Login Button -->
+            <!-- LOGIN BUTTON -->
 
             <button
                 type="submit"
@@ -247,8 +271,11 @@
                 Login
             </button>
 
+
         </form>
 
+
+        <!-- REGISTER -->
 
         <p class="register-text">
 
@@ -260,398 +287,437 @@
 
         </p>
 
+
     </div>
 
 
-<script type="module">
+    <!-- =========================
+         FIREBASE
+    ========================== -->
 
+    <script type="module">
 
-/* =========================================
-   FIREBASE IMPORT
-========================================= */
-
-
-import { initializeApp }
-
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-
-import {
-    getAuth,
-    signInWithEmailAndPassword
-}
-
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
-
-/* =========================================
-   FIREBASE CONFIGURATION
-========================================= */
-
-
-const firebaseConfig = {
-
-    apiKey:
-    "AIzaSyAR3uyMlvGNwZaG_w1zs6IKQ2lXB_Y_9M0",
-
-    authDomain:
-    "al-awn-blood-fighters.firebaseapp.com",
-
-    projectId:
-    "al-awn-blood-fighters",
-
-    storageBucket:
-    "al-awn-blood-fighters.firebasestorage.app",
-
-    messagingSenderId:
-    "299061496611",
-
-    appId:
-    "1:299061496611:web:4762f74dbf311cd57f1a96",
-
-    measurementId:
-    "G-D31EXKJWQ3"
-};
-
-
-
-/* =========================================
-   INITIALIZE FIREBASE
-========================================= */
-
-
-const app =
-initializeApp(firebaseConfig);
-
-
-const auth =
-getAuth(app);
-
-
-
-/* =========================================
-   PASSWORD SHOW / HIDE
-========================================= */
-
-
-window.togglePassword = function () {
-
-    const password =
-    document.getElementById("password");
-
-
-    const button =
-    document.querySelector(".eye");
-
-
-    if (password.type === "password") {
-
-        password.type = "text";
-
-        button.textContent = "🙈";
-
-    }
-
-    else {
-
-        password.type = "password";
-
-        button.textContent = "👁";
-
-    }
-
-};
-
-
-
-/* =========================================
-   SEND LOGIN RESULT TO KODULAR
-========================================= */
-
-
-function sendLoginSuccess(uid) {
-
-    const message =
-    "LOGIN_SUCCESS:" + uid;
-
-
-    console.log(message);
-
-
-    /*
-       Kodular WebViewer-এর জন্য
-       WebView String পাঠানো হচ্ছে
-    */
-
-
-    if (
-        window.AppInventor &&
-        typeof window.AppInventor.setWebViewString === "function"
-    ) {
-
-        window.AppInventor.setWebViewString(message);
-
-    }
-
-    else {
-
-        /*
-           Browser-এ খুললে শুধু console-এ দেখাবে
-        */
-
-        console.log(
-            "Kodular WebView interface পাওয়া যায়নি।"
-        );
-
-    }
-
-}
-
-
-
-/* =========================================
-   LOGIN
-========================================= */
-
-
-document
-.getElementById("loginForm")
-.addEventListener(
-    "submit",
-    async function(event) {
-
-
-        event.preventDefault();
-
-
-        const phone =
-        document
-        .getElementById("phone")
-        .value
-        .trim();
-
-
-        const password =
-        document
-        .getElementById("password")
-        .value;
-
-
-
-        /* =================================
-           PHONE VALIDATION
-        ================================= */
-
-
-        const phonePattern =
-        /^01[3-9]\d{8}$/;
-
-
-        if (!phonePattern.test(phone)) {
-
-            alert(
-                "সঠিক ১১ সংখ্যার বাংলাদেশি মোবাইল নম্বর দিন।"
-            );
-
-            return;
+        import {
+            initializeApp
         }
+        from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
-
-        /* =================================
-           PASSWORD VALIDATION
-        ================================= */
-
-
-        if (password.length < 6) {
-
-            alert(
-                "Password কমপক্ষে ৬ অক্ষরের হতে হবে।"
-            );
-
-            return;
+        import {
+            getAuth,
+            signInWithEmailAndPassword
         }
+        from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
+        // =========================
+        // FIREBASE CONFIGURATION
+        // =========================
 
-        /* =================================
-           LOGIN BUTTON
-        ================================= */
+        const firebaseConfig = {
 
+            apiKey:
+                "AIzaSyAR3uyMlvGNwZaG_w1zs6IKQ2lXB_Y_9M0",
 
-        const loginButton =
-        document
-        .getElementById("loginButton");
+            authDomain:
+                "al-awn-blood-fighters.firebaseapp.com",
 
+            projectId:
+                "al-awn-blood-fighters",
 
-        loginButton.disabled = true;
+            storageBucket:
+                "al-awn-blood-fighters.firebasestorage.app",
 
-        loginButton.textContent =
-        "Logging in...";
+            messagingSenderId:
+                "299061496611",
 
+            appId:
+                "1:299061496611:web:4762f74dbf311cd57f1a96",
 
+            measurementId:
+                "G-D31EXKJWQ3"
 
-        try {
-
-
-            /* =============================
-               PHONE → INTERNAL EMAIL
-            ============================= */
-
-
-            const internalEmail =
-            phone + "@aabf-user.app";
-
-
-
-            /* =============================
-               FIREBASE LOGIN
-            ============================= */
+        };
 
 
-            const userCredential =
-            await signInWithEmailAndPassword(
-                auth,
-                internalEmail,
-                password
-            );
+        // =========================
+        // INITIALIZE FIREBASE
+        // =========================
+
+        const app =
+            initializeApp(firebaseConfig);
 
 
-            const user =
-            userCredential.user;
+        const auth =
+            getAuth(app);
 
 
-            const uid =
-            user.uid;
+        // =========================
+        // PASSWORD SHOW / HIDE
+        // =========================
 
+        window.togglePassword = function () {
+
+            const password =
+                document.getElementById("password");
+
+            const button =
+                document.querySelector(".eye");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.textContent = "🙈";
+
+            }
+
+            else {
+
+                password.type = "password";
+
+                button.textContent = "👁";
+
+            }
+
+        };
+
+
+        // =========================
+        // SEND LOGIN SUCCESS TO
+        // KODULAR WEBVIEWER
+        // =========================
+
+        function sendLoginSuccess(uid) {
+
+            /*
+             * Kodular WebViewer এই String পাবে:
+             *
+             * LOGIN_SUCCESS:USER_UID
+             *
+             */
+
+            const message =
+                "LOGIN_SUCCESS:" + uid;
 
 
             console.log(
-                "Login successful:",
-                uid
-            );
-
-
-
-            /* =============================
-               LOGIN SUCCESS MESSAGE
-            ============================= */
-
-
-            alert(
-                "✅ Login সফল হয়েছে!"
+                "Sending to Kodular:",
+                message
             );
 
 
             /*
-               এখান থেকে আর
-               aabf:// URL ব্যবহার করা হচ্ছে না।
+             * WebView String Change
+             * Event ট্রিগার করার জন্য
+             */
 
-               সরাসরি Kodular WebView String-এ
-               UID পাঠানো হচ্ছে।
-            */
-
-
-            sendLoginSuccess(uid);
+            document.title = message;
 
 
+            /*
+             * URL পরিবর্তন না করে
+             * WebView-এর ভিতরে String
+             * পাঠানোর চেষ্টা
+             */
 
-            loginButton.disabled = false;
-
-            loginButton.textContent =
-            "Login";
-
+            window.location.hash =
+                encodeURIComponent(message);
 
         }
 
 
-        catch (error) {
+        // =========================
+        // LOGIN
+        // =========================
+
+        document
+        .getElementById("loginForm")
+        .addEventListener(
+            "submit",
+            async function(event) {
 
 
-            console.error(error);
+                event.preventDefault();
 
 
-            let message =
-            "Login করা যায়নি।";
+                // =========================
+                // GET INPUT
+                // =========================
+
+                const phone =
+                    document
+                    .getElementById("phone")
+                    .value
+                    .trim();
 
 
+                const password =
+                    document
+                    .getElementById("password")
+                    .value;
 
-            if (
-                error.code ===
-                "auth/invalid-credential"
-            ) {
 
-                message =
-                "মোবাইল নম্বর অথবা Password ভুল।";
+                // =========================
+                // PHONE VALIDATION
+                // =========================
+
+                const phonePattern =
+                    /^01[3-9]\d{8}$/;
+
+
+                if (
+                    !phonePattern.test(phone)
+                ) {
+
+                    alert(
+                        "সঠিক ১১ সংখ্যার বাংলাদেশি মোবাইল নম্বর দিন।"
+                    );
+
+                    return;
+
+                }
+
+
+                // =========================
+                // PASSWORD VALIDATION
+                // =========================
+
+                if (
+                    password.length < 6
+                ) {
+
+                    alert(
+                        "Password কমপক্ষে ৬ অক্ষরের হতে হবে।"
+                    );
+
+                    return;
+
+                }
+
+
+                // =========================
+                // LOGIN BUTTON
+                // =========================
+
+                const loginButton =
+                    document
+                    .getElementById("loginButton");
+
+
+                loginButton.disabled =
+                    true;
+
+
+                loginButton.textContent =
+                    "Logging in...";
+
+
+                try {
+
+
+                    // =========================
+                    // PHONE → INTERNAL EMAIL
+                    // =========================
+
+                    const internalEmail =
+                        phone + "@aabf-user.app";
+
+
+                    console.log(
+                        "Login email:",
+                        internalEmail
+                    );
+
+
+                    // =========================
+                    // FIREBASE LOGIN
+                    // =========================
+
+                    const userCredential =
+                        await signInWithEmailAndPassword(
+                            auth,
+                            internalEmail,
+                            password
+                        );
+
+
+                    // =========================
+                    // GET USER
+                    // =========================
+
+                    const user =
+                        userCredential.user;
+
+
+                    // =========================
+                    // GET UID
+                    // =========================
+
+                    const uid =
+                        user.uid;
+
+
+                    console.log(
+                        "Login successful:",
+                        uid
+                    );
+
+
+                    // =========================
+                    // SUCCESS MESSAGE
+                    // =========================
+
+                    alert(
+                        "✅ Login সফল হয়েছে!"
+                    );
+
+
+                    // =========================
+                    // SEND UID TO KODULAR
+                    // =========================
+
+                    sendLoginSuccess(uid);
+
+
+                    // =========================
+                    // RESET BUTTON
+                    // =========================
+
+                    loginButton.disabled =
+                        false;
+
+
+                    loginButton.textContent =
+                        "Login";
+
+
+                }
+
+                catch (error) {
+
+
+                    console.error(
+                        "Login Error:",
+                        error
+                    );
+
+
+                    let message =
+                        "Login করা যায়নি।";
+
+
+                    // =========================
+                    // ERROR HANDLING
+                    // =========================
+
+                    if (
+                        error.code ===
+                        "auth/invalid-credential"
+                    ) {
+
+                        message =
+                            "মোবাইল নম্বর অথবা Password ভুল।";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/user-not-found"
+                    ) {
+
+                        message =
+                            "এই নম্বর দিয়ে কোনো Account পাওয়া যায়নি।";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/wrong-password"
+                    ) {
+
+                        message =
+                            "Password ভুল।";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/invalid-email"
+                    ) {
+
+                        message =
+                            "মোবাইল নম্বর সঠিক নয়।";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/network-request-failed"
+                    ) {
+
+                        message =
+                            "Internet connection পরীক্ষা করুন।";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/too-many-requests"
+                    ) {
+
+                        message =
+                            "অনেকবার চেষ্টা করা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।";
+
+                    }
+
+
+                    // =========================
+                    // SHOW ERROR
+                    // =========================
+
+                    alert(message);
+
+
+                    // =========================
+                    // RESET BUTTON
+                    // =========================
+
+                    loginButton.disabled =
+                        false;
+
+
+                    loginButton.textContent =
+                        "Login";
+
+                }
 
             }
+        );
 
 
-            else if (
-                error.code ===
-                "auth/user-not-found"
-            ) {
+        // =========================
+        // GO TO REGISTER
+        // =========================
 
-                message =
-                "এই নম্বর দিয়ে কোনো Account পাওয়া যায়নি।";
+        window.goToRegister = function () {
 
-            }
+            window.location.href =
+                "index.html";
 
-
-            else if (
-                error.code ===
-                "auth/wrong-password"
-            ) {
-
-                message =
-                "Password ভুল।";
-
-            }
+        };
 
 
-            else if (
-                error.code ===
-                "auth/network-request-failed"
-            ) {
-
-                message =
-                "Internet connection পরীক্ষা করুন।";
-
-            }
-
-
-            alert(message);
-
-
-            loginButton.disabled = false;
-
-            loginButton.textContent =
-            "Login";
-
-        }
-
-    }
-);
-
-
-
-/* =========================================
-   GO TO REGISTER
-========================================= */
-
-
-window.goToRegister = function () {
-
-    window.location.href =
-    "index.html";
-
-};
-
-
-</script>
+    </script>
 
 </body>
+
 </html>
