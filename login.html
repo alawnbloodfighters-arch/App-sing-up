@@ -5,9 +5,10 @@
 
     <meta charset="UTF-8">
 
+    <!-- ZOOM COMPLETELY DISABLED -->
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
     >
 
     <title>AABF Team - Login</title>
@@ -26,6 +27,11 @@
         body {
             width: 100%;
             min-height: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+
+            /* Prevent touch zoom */
+            touch-action: manipulation;
         }
 
 
@@ -54,6 +60,9 @@
             padding: 20px;
 
             overflow-x: hidden;
+
+            /* Prevent browser zoom gesture */
+            touch-action: manipulation;
         }
 
 
@@ -178,11 +187,20 @@
 
             outline: none;
 
-            font-size: 15px;
+            /*
+             * IMPORTANT:
+             * 16px prevents Android/iOS WebView
+             * from automatically zooming when
+             * the input gets focus.
+             */
+            font-size: 16px;
 
             background: transparent;
 
             color: #222;
+
+            /* Prevent text scaling */
+            -webkit-text-size-adjust: 100%;
         }
 
 
@@ -205,6 +223,9 @@
             cursor: pointer;
 
             padding: 5px;
+
+            /* Prevent button gesture zoom */
+            touch-action: manipulation;
         }
 
 
@@ -233,6 +254,8 @@
             box-shadow:
                 0 8px 20px
                 rgba(217, 4, 41, 0.25);
+
+            touch-action: manipulation;
         }
 
 
@@ -263,6 +286,28 @@
             font-weight: bold;
 
             cursor: pointer;
+
+            touch-action: manipulation;
+        }
+
+
+        /*
+         * Prevent browser text resizing
+         * on mobile devices.
+         */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+
+        /*
+         * Prevent double-tap zoom.
+         */
+        button,
+        input,
+        span {
+            touch-action: manipulation;
         }
 
 
