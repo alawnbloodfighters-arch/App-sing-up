@@ -2,6 +2,7 @@
 <html lang="bn">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -11,6 +12,7 @@
 
     <title>AABF Team - Login</title>
 
+
     <style>
 
         * {
@@ -19,7 +21,16 @@
             box-sizing: border-box;
         }
 
+
+        html,
         body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        body {
+
             min-height: 100vh;
 
             font-family:
@@ -41,16 +52,27 @@
             align-items: center;
 
             padding: 20px;
+
+            overflow-x: hidden;
         }
 
+
         .login-container {
+
             width: 100%;
+
             max-width: 390px;
+
+            margin: 0 auto;
+
             text-align: center;
         }
 
+
         .logo-box {
+
             width: 82px;
+
             height: 82px;
 
             margin: 0 auto 15px;
@@ -62,6 +84,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             box-shadow:
@@ -69,26 +92,46 @@
                 rgba(217, 4, 41, 0.22);
         }
 
+
         .blood-drop {
+
             color: white;
+
             font-size: 38px;
+
+            line-height: 1;
         }
 
+
         h1 {
+
             font-size: 28px;
+
+            line-height: 1.25;
+
             color: #b00020;
+
             margin-bottom: 5px;
         }
 
+
         .subtitle {
+
             color: #777;
+
             font-size: 15px;
+
+            line-height: 1.5;
+
             margin-bottom: 28px;
         }
 
+
         .input-box {
-            height: 56px;
+
             width: 100%;
+
+            height: 56px;
 
             background: white;
 
@@ -110,17 +153,29 @@
                 rgba(0, 0, 0, 0.04);
         }
 
+
         .input-box span {
+
+            flex: 0 0 auto;
+
             font-size: 19px;
+
             margin-right: 12px;
         }
 
+
         .input-box input {
+
             flex: 1;
+
+            min-width: 0;
+
+            width: 100%;
 
             height: 100%;
 
             border: none;
+
             outline: none;
 
             font-size: 15px;
@@ -130,17 +185,33 @@
             color: #222;
         }
 
+
+        .input-box input::placeholder {
+
+            color: #888;
+        }
+
+
         .eye {
+
+            flex: 0 0 auto;
+
             border: none;
+
             background: transparent;
 
             font-size: 17px;
 
             cursor: pointer;
+
+            padding: 5px;
         }
 
+
         .login-btn {
+
             width: 100%;
+
             height: 56px;
 
             margin-top: 8px;
@@ -164,20 +235,29 @@
                 rgba(217, 4, 41, 0.25);
         }
 
+
         .login-btn:disabled {
+
             opacity: 0.7;
+
             cursor: not-allowed;
         }
 
+
         .register-text {
+
             margin-top: 22px;
 
             font-size: 14px;
 
+            line-height: 1.5;
+
             color: #777;
         }
 
+
         .register-text span {
+
             color: #d90429;
 
             font-weight: bold;
@@ -185,18 +265,29 @@
             cursor: pointer;
         }
 
+
         @media (max-width: 360px) {
 
             body {
                 padding: 15px;
             }
 
+
+            .login-container {
+                max-width: 100%;
+            }
+
+
             .logo-box {
+
                 width: 72px;
+
                 height: 72px;
             }
 
+
             h1 {
+
                 font-size: 25px;
             }
 
@@ -209,7 +300,9 @@
 
 <body>
 
+
     <div class="login-container">
+
 
         <!-- LOGO -->
 
@@ -247,6 +340,7 @@
                     📱
                 </span>
 
+
                 <input
                     type="tel"
                     id="phone"
@@ -268,6 +362,7 @@
                     🔒
                 </span>
 
+
                 <input
                     type="password"
                     id="password"
@@ -275,6 +370,7 @@
                     autocomplete="current-password"
                     required
                 >
+
 
                 <button
                     type="button"
@@ -318,12 +414,10 @@
     </div>
 
 
-
-    <!-- =====================================
-         FIREBASE
-    ====================================== -->
+    <!-- FIREBASE -->
 
     <script type="module">
+
 
         import {
             initializeApp
@@ -340,14 +434,12 @@
         "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-        // =====================================
         // FIREBASE CONFIGURATION
-        // =====================================
 
         const firebaseConfig = {
 
             apiKey:
-                "AIzaSyAR3uyMlvGNWZaG_w1zs6IKQ2lXB_Y_9M0",
+                "AIzaSyAR3uyMlvGNwZaG_w1zs6IKQ2lXB_Y_9M0",
 
             authDomain:
                 "al-awn-blood-fighters.firebaseapp.com",
@@ -370,9 +462,7 @@
         };
 
 
-        // =====================================
         // INITIALIZE FIREBASE
-        // =====================================
 
         const app =
             initializeApp(
@@ -384,13 +474,9 @@
             getAuth(app);
 
 
-
-        // =====================================
         // PASSWORD SHOW / HIDE
-        // =====================================
 
-        window.togglePassword =
-        function () {
+        window.togglePassword = function () {
 
             const password =
                 document.getElementById(
@@ -412,9 +498,7 @@
 
                 button.textContent = "🙈";
 
-            }
-
-            else {
+            } else {
 
                 password.type = "password";
 
@@ -425,11 +509,7 @@
         };
 
 
-
-        // =====================================
-        // SEND LOGIN SUCCESS TO
-        // MIT APP INVENTOR
-        // =====================================
+        // SEND LOGIN SUCCESS TO MIT APP INVENTOR
 
         function sendLoginSuccess(uid) {
 
@@ -437,29 +517,17 @@
                 "LOGIN_SUCCESS:" + uid;
 
 
-            console.log(
-                "Sending to MIT App Inventor:",
-                message
-            );
-
-
             if (
-
                 window.AppInventor &&
-
-                typeof
-                window.AppInventor.setWebViewString ===
+                typeof window.AppInventor.setWebViewString ===
                 "function"
-
             ) {
 
                 window.AppInventor.setWebViewString(
                     message
                 );
 
-            }
-
-            else {
+            } else {
 
                 console.error(
                     "MIT App Inventor WebViewer interface পাওয়া যায়নি।"
@@ -470,10 +538,7 @@
         }
 
 
-
-        // =====================================
         // LOGIN FORM
-        // =====================================
 
         document
             .getElementById("loginForm")
@@ -484,10 +549,6 @@
                     event.preventDefault();
 
 
-                    // =====================================
-                    // GET PHONE
-                    // =====================================
-
                     const phone =
                         document
                             .getElementById("phone")
@@ -495,19 +556,13 @@
                             .trim();
 
 
-                    // =====================================
-                    // GET PASSWORD
-                    // =====================================
-
                     const password =
                         document
                             .getElementById("password")
                             .value;
 
 
-                    // =====================================
                     // PHONE VALIDATION
-                    // =====================================
 
                     const phonePattern =
                         /^01[3-9]\d{8}$/;
@@ -526,9 +581,7 @@
                     }
 
 
-                    // =====================================
                     // PASSWORD VALIDATION
-                    // =====================================
 
                     if (
                         password.length < 6
@@ -542,10 +595,6 @@
 
                     }
 
-
-                    // =====================================
-                    // LOGIN BUTTON
-                    // =====================================
 
                     const loginButton =
                         document.getElementById(
@@ -561,24 +610,14 @@
 
                     try {
 
-                        // =====================================
                         // PHONE → INTERNAL EMAIL
-                        // =====================================
 
                         const internalEmail =
                             phone +
                             "@aabf-user.app";
 
 
-                        console.log(
-                            "Internal Email:",
-                            internalEmail
-                        );
-
-
-                        // =====================================
                         // FIREBASE LOGIN
-                        // =====================================
 
                         const userCredential =
                             await
@@ -589,39 +628,23 @@
                             );
 
 
-                        // =====================================
                         // GET USER
-                        // =====================================
 
                         const user =
                             userCredential.user;
 
 
-                        // =====================================
                         // GET UID
-                        // =====================================
 
                         const uid =
                             user.uid;
 
 
-                        console.log(
-                            "Firebase Login Successful"
-                        );
+                        // SEND LOGIN SUCCESS
 
-
-                        console.log(
-                            "UID:",
+                        sendLoginSuccess(
                             uid
                         );
-
-
-                        // =====================================
-                        // SEND UID TO MIT APP INVENTOR
-                        // =====================================
-
-                        sendLoginSuccess(uid);
-
 
                     }
 
@@ -638,10 +661,6 @@
                             "Login করা যায়নি।";
 
 
-                        // =====================================
-                        // INVALID CREDENTIAL
-                        // =====================================
-
                         if (
                             error.code ===
                             "auth/invalid-credential"
@@ -651,11 +670,6 @@
                                 "মোবাইল নম্বর অথবা Password ভুল।";
 
                         }
-
-
-                        // =====================================
-                        // USER NOT FOUND
-                        // =====================================
 
                         else if (
                             error.code ===
@@ -667,11 +681,6 @@
 
                         }
 
-
-                        // =====================================
-                        // WRONG PASSWORD
-                        // =====================================
-
                         else if (
                             error.code ===
                             "auth/wrong-password"
@@ -681,11 +690,6 @@
                                 "Password ভুল।";
 
                         }
-
-
-                        // =====================================
-                        // INVALID EMAIL
-                        // =====================================
 
                         else if (
                             error.code ===
@@ -697,11 +701,6 @@
 
                         }
 
-
-                        // =====================================
-                        // NETWORK ERROR
-                        // =====================================
-
                         else if (
                             error.code ===
                             "auth/network-request-failed"
@@ -711,11 +710,6 @@
                                 "Internet connection পরীক্ষা করুন।";
 
                         }
-
-
-                        // =====================================
-                        // TOO MANY REQUESTS
-                        // =====================================
 
                         else if (
                             error.code ===
@@ -728,18 +722,12 @@
                         }
 
 
-                        // =====================================
-                        // SHOW ERROR
-                        // =====================================
-
                         alert(message);
 
 
-                        // =====================================
-                        // RESET LOGIN BUTTON
-                        // =====================================
+                        loginButton.disabled =
+                            false;
 
-                        loginButton.disabled = false;
 
                         loginButton.textContent =
                             "Login";
@@ -750,13 +738,9 @@
             );
 
 
-
-        // =====================================
         // GO TO REGISTER
-        // =====================================
 
-        window.goToRegister =
-        function() {
+        window.goToRegister = function () {
 
             window.location.href =
                 "index.html";
@@ -766,8 +750,7 @@
 
     </script>
 
+
 </body>
 
 </html>
-
-এখন GitHub-এর "login.html"-এ এই কোড বসালে উপরে AABF Team দেখাবে এবং Login সফল হলে MIT App Inventor-এর "WebViewStringChange" event-এ UID পাঠাবে।
